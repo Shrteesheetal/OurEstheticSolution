@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<User> signInManager;
+
+    <style>
+
+    .custom-nav-link {
+        color: #343a40;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+    }
+
+        .custom-nav-link:hover,
+        .custom-nav-link:focus {
+            color: #fff;
+            background-color: #6c757d; /* Bootstrap secondary or your own */
+            text-decoration: none;
+        }
+
+    </style>
+<ul class="navbar-nav ms-auto d-flex align-items-center gap-3">
+
+    @if (signInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn nav-link custom-nav-link">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link custom-nav-link" asp-controller="Account" asp-action="Login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link custom-nav-link" asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+    }
+
+</ul>

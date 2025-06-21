@@ -1,0 +1,116 @@
+﻿/* General Reset & Typography */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff4f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+    a:hover {
+        color: #b03a63;
+    }
+
+/* Navbar */
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+.navbar-bg {
+    background-image: url('https://raw.githubusercontent.com/farazc60/Project-Images/main/medical/assets/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-color:lightblue;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #b03a63 !important;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    color: #555;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #b03a63;
+    }
+
+/* Logo */
+.logo img {
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* Hero Section */
+.hero {
+    padding: 80px 0;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+}
+
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #ffc9d9;
+}
+
+.hero-title {
+    font-size: 2.75rem;
+    font-weight: bold;
+    margin-bottom: 1.25rem;
+    color: #fff;
+}
+
+.hero-card {
+    background: #ffffffcc;
+    padding: 1.5rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin-top: 1rem;
+    color: #333;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f2f2f2;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    border: none;
+    background: transparent;
+    flex: 1;
+    font-size: 1rem;
+}
+
+    .input-field:focus {
+        outline: none;
+    }
