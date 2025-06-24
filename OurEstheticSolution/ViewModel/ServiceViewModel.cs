@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace OurEstheticSolution.Models.ViewModels
+namespace OurEstheticSolution.ViewModel
 {
     public class ServiceViewModel
     {

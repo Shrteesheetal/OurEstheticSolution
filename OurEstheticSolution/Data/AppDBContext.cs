@@ -19,6 +19,12 @@ namespace OurEstheticSolution.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<OurEstheticSolution.ViewModel.ProductViewModel> ProductViewModel { get; set; } = default!;
 
+        public DbSet<Service> Services { get; set; }
+        public DbSet<OurEstheticSolution.ViewModel.ServiceViewModel> ServiceViewModel { get; set; } = default!;
+
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<OurEstheticSolution.ViewModel.AppointmentViewModel> AppointmentViewModel { get; set; } = default!;
+
         // Consolidated OnModelCreating method to avoid duplicate definitions
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

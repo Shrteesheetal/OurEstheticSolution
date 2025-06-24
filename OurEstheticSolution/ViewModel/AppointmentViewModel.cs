@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace OurEstheticSolution.Models.Entities
+namespace OurEstheticSolution.ViewModel
 {
-    public class Appointment
+    public class AppointmentViewModel
     {
         [Key]
         public Guid Id { get; set; }
@@ -34,7 +33,7 @@ namespace OurEstheticSolution.Models.Entities
 
         [Required(ErrorMessage = "Created by is required")]
         [StringLength(100, ErrorMessage = "Created by cannot be longer than 100 characters")]
+        public string? CreatedBy { get; set; }
        
-        public string Createdby { get; internal set; }
     }
 }

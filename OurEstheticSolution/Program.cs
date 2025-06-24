@@ -16,6 +16,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IDBConnection, DBConnection>();
 builder.Services.AddScoped<IEmployee, IEmployeeRepo>();
 builder.Services.AddScoped<IProduct, IProductRepo>();
+builder.Services.AddScoped<IService, IServiceRepo>();
+builder.Services.AddScoped<IAppointment, IAppointmentRepo>();
 
 
 builder.Services.AddDbContext<AppDBContext>(options =>
