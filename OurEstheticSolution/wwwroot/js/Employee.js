@@ -5,8 +5,11 @@
 window.app.employee = (function ($) {
 
     var initUi = function () {
+        GetEmployee();
         GetEmployeeList();
-        $('#UpdateEmployee').hide();
+       
+
+         $('#UpdateEmployee').hide();
     };
 
     var initEvent = function () {
@@ -116,6 +119,27 @@ window.app.employee = (function ($) {
                     i++;
                 });
                 $('#employeeTableBody').html(rows);
+            },
+            error: function () {
+                alert("Unable to retrieve employee list.");
+            }
+        });
+    };
+    var GetEmployee = function () {
+        debugger;
+        $.ajax({
+            url: '/Employee/AllEmployee',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var listItems = '';
+                var i = 1;
+                $.each(data, function (index, item) {
+                    listItems += `  <li><a class="dropdown-item" href="#"> ${item.name}</a></li> `;
+                    i++;
+                });
+
+                $('#dropdoenlabelemp').html(listItems);
             },
             error: function () {
                 alert("Unable to retrieve employee list.");

@@ -82,7 +82,7 @@ namespace OurEstheticSolution.Repository
             // Map ServiceViewModel to Service entity
             var serviceEntity = new Service
             {
-                Id = model.Id != Guid.Empty ? model.Id : Guid.NewGuid(),
+                Id = model.Id,
                 Name = model.Name,
                 Description = model.Description,
                 TimePeriod = model.TimePeriod,
@@ -96,20 +96,21 @@ namespace OurEstheticSolution.Repository
             _context.SaveChanges(); // Save changes to the database
         }
 
-        public void UpdateService(ServiceViewModel serviceVm)
+        public void UpdateService(ServiceViewModel model)
         {
-            var service = _context.Services.FirstOrDefault(s => s.Id == serviceVm.Id);
+            var service = _context.Services.FirstOrDefault(s => s.Id == model.Id);
 
             if (service != null)
             {
                 // Map fields from ViewModel to Entity
-                service.Name = serviceVm.Name;
-                service.Description = serviceVm.Description;
-                service.TimePeriod = serviceVm.TimePeriod;
-                service.TotalCost = serviceVm.TotalCost;
-                service.Tools = serviceVm.Tools;
-                service.CreatedDate = serviceVm.CreatedDate;
-                service.CreatedBy = serviceVm.CreatedBy;
+                service.Id = model.Id;
+                service.Name = model.Name;
+                service.Description = model.Description;
+                service.TimePeriod = model.TimePeriod;
+                service.TotalCost = model.TotalCost;
+                service.Tools = model.Tools;
+                service.CreatedDate = model.CreatedDate;
+                service.CreatedBy = model.CreatedBy;
 
                 _context.SaveChanges(); // Commit changes
             }

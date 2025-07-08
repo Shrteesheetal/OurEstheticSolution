@@ -1,17 +1,21 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OurEstheticSolution.Interface;
 using OurEstheticSolution.Models;
+using OurEstheticSolution.Repository;
 
 namespace OurEstheticSolution.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IService _serviceRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IService serviceRepo  )
         {
             _logger = logger;
+            _serviceRepo = serviceRepo;
         }
 
         public IActionResult Index()
@@ -39,6 +43,8 @@ namespace OurEstheticSolution.Controllers
         {
             return View();
         }
+
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

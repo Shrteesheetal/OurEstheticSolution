@@ -1,7 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Service";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-}
+  }
+ 
 
 <div class="row">
     <div class="col-md-12">
@@ -9,19 +10,38 @@
         <div class="alert alert-danger d-none" id="errorMessage"></div>
 
         <form id="CreateServiceForm">
+            <h2 class="mb-4">Service Registration Form</h2>
             <div class="row">
                 <div class="col-md-4">
                     <input id="ServiceId" name="id" type="hidden" />
+
                     <label for="Name" class="control-label">Service Name</label>
-                    <input id="Name" name="name" class="form-control" />
-                    <span id="NameValidation" class="text-danger"></span>
                     <select id="Name" name="name" class="form-control" required>
                         <option value="">-- Select Service --</option>
-                        @foreach (var prod in ViewBag.ProductDropDown)
-                        {
-                            <option value="@prod.ServiceId">@prod.Name</option>
-                        }
+                        <option value="Facial Treatment">Facial Treatment</option>
+                        <option value="Laser Hair Removal">Laser Hair Removal</option>
+                        <option value="Botox">Botox</option>
+                        <option value="Chemical Peel">Chemical Peel</option>
+                        <option value="Microdermabrasion">Microdermabrasion</option>
+                        <option value="Massage Therapy">Massage Therapy</option>
+                        <option value="Skin Rejuvenation">Skin Rejuvenation</option>
+                        <option value="Body Contouring">Body Contouring</option>
+                        <option value="Acne Treatment">Acne Treatment</option>
+                        <option value="Anti-Aging Treatment">Anti-Aging Treatment</option>
+                        <option value="Hair Restoration">Hair Restoration</option>
+                        <option value="Nail Care">Nail Care</option>
+                        <option value="Waxing">Waxing</option>
+                        <option value="Eyebrow Shaping">Eyebrow Shaping</option>
+                        <option value="Makeup Application">Makeup Application</option>
+                        <option value="Scar Revision">Scar Revision</option>
+                        <option value="Stretch Mark Treatment">Stretch Mark Treatment</option>
+                        <option value="Cellulite Treatment">Cellulite Treatment</option>
+                        <option value="Skin Tightening">Skin Tightening</option>
+                        <option value="Peel Treatment">Peel Treatment</option>
+                        <option value="LED Light Therapy">LED Light Therapy</option>
+
                     </select>
+                    <span id="NameValidation" class="text-danger"></span>
                 </div>
 
                 <div class="col-md-4">
@@ -32,10 +52,9 @@
 
                 <div class="col-md-4">
                     <label for="TotalCost" class="control-label">Total Cost</label>
-                    <input type="text" id="TotalCost" name="totalCost" class="form-control"/>
+                    <input type="text" id="TotalCost" name="totalCost" class="form-control" />
                     <span id="TotalCostValidation" class="text-danger"></span>
                 </div>
-                
             </div>
 
             <div class="row mt-3">
@@ -43,8 +62,6 @@
                     <label for="Tools" class="control-label">Tools Used</label>
                     <select id="Tools" name="tools" class="form-control">
                         <option value="">-- Select Tool --</option>
-
-                        <!-- Facial & Skin Care -->
                         <option value="Facial Steamer">Facial Steamer</option>
                         <option value="Magnifying Lamp">Magnifying Lamp</option>
                         <option value="High Frequency Machine">High Frequency Machine</option>
@@ -52,42 +69,31 @@
                         <option value="Ultrasonic Skin Scrubber">Ultrasonic Skin Scrubber</option>
                         <option value="LED Light Therapy Device">LED Light Therapy Device</option>
                         <option value="Microdermabrasion Machine">Microdermabrasion Machine</option>
-
-                        <!-- Massage & Relaxation -->
                         <option value="Massage Table">Massage Table</option>
                         <option value="Hot Towel Cabinet">Hot Towel Cabinet</option>
                         <option value="Aromatherapy Diffuser">Aromatherapy Diffuser</option>
                         <option value="Massage Stones">Massage Stones</option>
                         <option value="Body Massager">Body Massager</option>
-
-                        <!-- Manicure & Pedicure -->
                         <option value="Nail Drill Machine">Nail Drill Machine</option>
                         <option value="UV Nail Lamp">UV Nail Lamp</option>
                         <option value="Cuticle Tools">Cuticle Tools</option>
                         <option value="Nail Files & Buffers">Nail Files & Buffers</option>
                         <option value="Foot Spa Basin">Foot Spa Basin</option>
-
-                        <!-- Hair Services -->
                         <option value="Hair Dryer">Hair Dryer</option>
                         <option value="Flat Iron">Flat Iron</option>
                         <option value="Hair Clippers">Hair Clippers</option>
                         <option value="Color Mixing Kit">Color Mixing Kit</option>
                         <option value="Hair Steamer">Hair Steamer</option>
-
-                        <!-- Waxing & Hair Removal -->
                         <option value="Wax Warmer">Wax Warmer</option>
                         <option value="Wax Strips & Applicators">Wax Strips & Applicators</option>
                         <option value="Threading Tools">Threading Tools</option>
                         <option value="Epilator Machine">Epilator Machine</option>
-
-                        <!-- Advanced Treatments -->
                         <option value="Laser Hair Removal Machine">Laser Hair Removal Machine</option>
                         <option value="Radio Frequency Device">Radio Frequency Device</option>
                         <option value="Body Cavitation Machine">Body Cavitation Machine</option>
                         <option value="Cryotherapy Machine">Cryotherapy Machine</option>
                         <option value="Hydrafacial Machine">Hydrafacial Machine</option>
                     </select>
-
                 </div>
 
                 <div class="col-md-4">
@@ -106,6 +112,8 @@
                 <div class="col-md-12 d-flex justify-content-start gap-2">
                     <input type="submit" value="Save" id="CreateService" class="btn btn-primary" />
                     <input type="submit" value="Update" id="UpdateService" class="btn btn-primary" />
+                    
+
                     <input type="reset" value="Reset" class="btn btn-dark" />
                 </div>
             </div>
@@ -114,7 +122,7 @@
 
     <div class="col-md-12 mt-5">
         <table class="table table-striped">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>#</th>
                     <th>Name</th>
@@ -131,28 +139,37 @@
     </div>
 </div>
 
-<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-describedby="deleteModalDesc" aria-hidden="true">
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Delete Service Confirmation</h5>
+                <h5 class="modal-title">Delete Service Confirmation</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input type="text" id="DeleteServiceId"  />
-                <h3 id="deleteModalDesc">Are you sure you want to delete this service?</h3>
+                <input type="hidden" id="DeleteServiceId" />
+                <h3>Are you sure you want to delete this service?</h3>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger" id="deleteservice" data-bs-dismiss="modal">Yes, Delete</button>
+                <button type="button" class="btn btn-danger" id="deleteservice">Yes, Delete</button>
             </div>
         </div>
     </div>
 </div>
+
+
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 @section Scripts {
     <script src="~/js/service.js"></script>
     @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    <script>
+        $(document).ready(function () {
+            GetServiceList(); // Loads service table
+        });
+    </script>
 }

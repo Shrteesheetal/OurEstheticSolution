@@ -7,5 +7,10 @@ namespace OurEstheticSolution.Interface
         IEnumerable<AppointmentViewModel> GetAllAppointments();
 
         void InsertAppointment(AppointmentViewModel model);
+
+        AppointmentViewModel GetById(Guid id);
+
+        void DeleteAppointment(Guid id);
+        void UpdateAppointment(AppointmentViewModel model);
     }
 }

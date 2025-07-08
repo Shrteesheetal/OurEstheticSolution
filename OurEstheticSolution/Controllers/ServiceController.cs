@@ -10,18 +10,28 @@ namespace OurEstheticSolution.Controllers
     public class ServiceController : Controller
     {
         private readonly IService _serviceRepo;
-        private readonly IProduct _prodRepo;
-        public ServiceController(IService ServiceRepo, IProduct prodRepo )
+    
+        public ServiceController(IService ServiceRepo )
         {
             _serviceRepo = ServiceRepo;
-            _prodRepo = prodRepo;
+          
         }
         public IActionResult Index()
         {
            
-            IEnumerable<ProductViewModel> ServiceRepo= _prodRepo.GetAllProducts();
-            ViewBag.ProductDropDown = ServiceRepo;
+          
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult ServiceDetail(Guid id)
+        {
+
+            var services = _serviceRepo.GetById(id);
+            return View(services);
+
+
+
         }
 
 
@@ -41,6 +51,9 @@ namespace OurEstheticSolution.Controllers
 
 
         public JsonResult AllService()
+        
+        
+        
         {
             var data = _serviceRepo.GetAllServices();
             return Json(data);

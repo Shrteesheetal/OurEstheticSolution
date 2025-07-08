@@ -1,8 +1,61 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!-- Hero Section -->
+<section class="hero" style="background-image: url('https://raw.githubusercontent.com/farazc60/Project-Images/main/medical/assets/hero-bg.png');" aria-label="home">
+    <main role="main" class="pb-3">
+        <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between">
+            <div class="hero-content text-center text-lg-start">
+                <p class="hero-subtitle">Welcome To AestheticSolution</p>
+                <h1 class="headline-lg hero-title">Find Nearest <br /> Branch.</h1>
+                <div class="hero-card mt-4">
+                    <p class="title-lg card-text">Search Beautician. Cosmetologist. HairCare. Skincare. Nailcare. Lash & Brow Treatments. etc.</p>
+                    <div class="d-flex">
+                        <div class="input-wrapper me-2">
+                            <input type="text" name="location" placeholder="Locations" class="form-control" />
+                            <ion-icon name="location-outline"></ion-icon>
+                        </div>
+                        <button class="btn btn-primary">
+                            <ion-icon name="search-outline"></ion-icon>
+                            <span class="ms-2">Find Now</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Banner -->
+            <figure class="hero-banner mt-5 mt-lg-0" style="max-width: 500px;">
+                <img src="https://images.pexels.com/photos/5128220/pexels-photo-5128220.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                     alt="Hero Banner"
+                     class="img-fluid rounded shadow"
+                     style="object-fit: cover;" />
+            </figure>
+        </div>
+   
+    </main>
+</section>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+    <h2 class="mt-5">Available Services</h2>
+    <div class="row justify-content-center mt-4" id="cardService">
+    
+    </div>
+
+   
+
+
 </div>
+
+ 
+
+@section Scripts {
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    
+}
+

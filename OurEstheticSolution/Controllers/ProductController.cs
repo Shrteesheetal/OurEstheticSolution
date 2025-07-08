@@ -10,12 +10,17 @@ namespace OurEstheticSolution.Controllers
     public class ProductController : Controller
     {
         private readonly IProduct _prodRepo;
-        public  ProductController(IProduct prodRepo)
+        private readonly IService _serviceRepo;
+
+        public  ProductController(IProduct prodRepo, IService serviceRepo)
         {
             _prodRepo = prodRepo;
+            _serviceRepo = serviceRepo;
         }
         public IActionResult Index()
         {
+            IEnumerable<ServiceViewModel> prodRepo = _serviceRepo.GetAllServices();
+            ViewBag.ServiceDropDown = prodRepo;
             return View();
         }
 

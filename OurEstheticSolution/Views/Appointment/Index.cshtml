@@ -47,24 +47,21 @@
                     <span id="DateValidation" class="text-danger"></span>
                 </div>
 
-                <div class="input-group" id="timePicker">
-                    <input id="AppointmentTime" name="appointmentTime" class="form-control" />
-                    <span class="input-group-text" id="clock-addon"><i class="bi bi-clock"></i></span>
+                <div class="col-md-4">
+                    <label for="AppointmentTime" class="control-label">Appointment Time</label>
+                    <div class="time-picker-group">
+                        <input type="time" id="AppointmentTime" name="appointmentTime" class="form-control form-control-with-icon" />
+                        <i class="bi bi-clock"></i> 
+                    </div>
+                    <span id="AppointmentTimeValidation" class="text-danger"></span>
                 </div>
-                <script>
-                    const timePicker = new tempusDominus.TempusDominus(document.getElementById('timePicker'), {
-                        display: {
-                            components: {
-                                calendar: false,
-                                hours: true,
-                                minutes: true,
-                                seconds: false
-                            }
-                        }
-                    });
-                </script>
 
 
+                <div class="col-md-4">
+                    <label for="CreatedBy" class="control-label">Created By</label>
+                    <input id="CreatedBy" name="createdBy" class="form-control" type="text" />
+                    <span id="CreatedByValidation" class="text-danger"></span>
+                </div>
             </div>
 
             <div class="row mt-3">
@@ -76,6 +73,8 @@
                     </div>
                 </div>
             </div>
+
+           
         </form>
     </div>
 
@@ -90,6 +89,7 @@
                     <th>Service</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Created By</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -98,8 +98,8 @@
     </div>
 </div>
 
-@* <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-describedby="deleteModalDesc" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +107,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <input type="text" id="DeleteAppointmentId" class="form-control" />
+                <input type="text" id="DeleteAppointmentId"  />
                 <h3 id="deleteModalDesc">Are you sure you want to delete this appointment?</h3>
             </div>
             <div class="modal-footer">
@@ -117,7 +117,9 @@
         </div>
     </div>
 </div>
- *@
+
+
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
 @section Scripts {

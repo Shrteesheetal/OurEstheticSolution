@@ -31,9 +31,10 @@ namespace OurEstheticSolution.ViewModel
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Created by is required")]
-        [StringLength(100, ErrorMessage = "Created by cannot be longer than 100 characters")]
+        [Required(ErrorMessage = "CreatedBy is required.")]
+        [StringLength(100, ErrorMessage = "CreatedBy cannot be longer than 100 characters.")]
+        [Display(Name = "Created By")]
         public string? CreatedBy { get; set; }
-       
+
     }
 }

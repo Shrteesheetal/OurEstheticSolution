@@ -1,0 +1,52 @@
+﻿@model OurEstheticSolution.ViewModel.ServiceViewModel
+@{
+    ViewData["Title"] = "ServiceDetail";
+}
+
+<h2 class="text-center my-4 text-primary">Service Details</h2>
+
+<div class="container">
+    <div class="row shadow-lg p-4 rounded bg-light">
+
+        <!-- Left Side: Image and Description -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="@Url.Content("~/images/Merlin.jpg")" class="card-img-top rounded" alt="Service Image" style="height: 350px; object-fit: cover;" />
+                <div class="card-body">
+                    <h5 class="card-title text-dark">Description</h5>
+                    <p class="card-text text-muted">
+                        @Html.DisplayFor(model => model.Description)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Other Service Details -->
+        <div class="col-md-6">
+            <div class="card p-3 border-0 bg-white">
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4 text-secondary">Name</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.Name)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Time Period</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.TimePeriod)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Total Cost</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.TotalCost)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Tools</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.Tools)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Created Date</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.CreatedDate)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Created By</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.CreatedBy)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

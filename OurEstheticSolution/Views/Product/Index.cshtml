@@ -49,35 +49,15 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="ServiceId" class="control-label">Service</label>
-                        <select id="ServiceId" name="serviceId" class="form-control">
-                            <option value="">-- Select Service --</option>
-                               
-                                <option value="SVC001">Facial Treatment</option>
-                                <option value="SVC002">Laser Hair Removal</option>
-                                <option value="SVC003">Botox</option>
-                                <option value="SVC004">Chemical Peel</option>
-                                <option value="SVC005">Microdermabrasion</option>
-                                <option value="SVC006">Massage Therapy</option>
-                                <option value="SVC007">Skin Rejuvenation</option>
-                                <option value="SVC008">Body Contouring</option>
-                                <option value="SVC009">Acne Treatment</option>
-                                <option value="SVC010">Anti-Aging Treatment</option>
-                                <option value="SVC011">Hair Restoration</option>
-                                <option value="SVC012">Nail Care</option>
-                                <option value="SVC013">Waxing</option>
-                                <option value="SVC014">Eyebrow Shaping</option>
-                                <option value="SVC015">Makeup Application</option>
-                                <option value="SVC017">Scar Revision</option>
-                                <option value="SVC018">Stretch Mark Treatment</option>
-                                <option value="SVC019">Cellulite Treatment</option>
-                                <option value="SVC020">Skin Tightening</option>
-                                <option value="SVC021">Peel Treatment</option>
-                                <option value="SVC022">LED Light Therapy</option>
-                               
-                            
+                        <label for="Name" class="control-label">Service Name</label>
+                        <select id="Name" name="name" class="form-control" required>
+                            <option value="">-- SelectService --</option>
+                            @foreach (var serviceVm  in ViewBag.ServiceDropDown)
+                            {
+                                <option value="@serviceVm.Id">@serviceVm.Name</option>
+                            }
                         </select>
-                        <span id="ServiceIdValidation" class="text-danger"></span>
+                       
                     </div>
                 </div>
 

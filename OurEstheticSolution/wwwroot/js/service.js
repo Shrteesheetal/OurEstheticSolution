@@ -5,6 +5,7 @@
 window.app.service = (function ($) {
     debugger;
     var initUi = function () {
+        GetService();
         GetServiceList();
         $('#UpdateService').hide();
     };
@@ -16,6 +17,7 @@ window.app.service = (function ($) {
         $("#deleteservice").on("click", DeleteService);
 
         $(document).on("click", ".editservice", function () {
+            debugger;
             var id = $(this).data('id');
             GetServiceById(id);
         });
@@ -133,18 +135,39 @@ window.app.service = (function ($) {
             }
         });
     };
+    var GetService = function () {
+        debugger;
+        $.ajax({
+            url: '/Service/AllService',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var listItems = '';
+                var i = 1;
+                $.each(data, function (index, item) {
+                    listItems += `  <li><a class="dropdown-item" href="#"> ${item.name}</a></li> `;
+                    i++;
+                });
 
+                $('#dropdoenlabelservice').html(listItems);
+            },
+            error: function () {
+                alert("Unable to retrieve employee list.");
+            }
+        });
+    };
     var GetServiceById = function (id) {
         debugger;
         $.ajax({
             url: '/Service/DetailService/' + id,
-            method: 'get',
+            method: 'GET',
             datatype: 'json',
             success: function (item) {
                
                 $('#ServiceId').val(item.id);
+                $('#DeleteServiceId').val(item.id);
                 $('#Name').val(item.name);
-                $('##TimePeriod').val(item.timeperiod);
+                $('#TimePeriod').val(item.timeperiod);
                 $('#TotalCost').val(item.totalcost);
                 $('#Tools').val(item.tools);
                 $('#Description').val(item.description);
@@ -174,6 +197,13 @@ window.app.service = (function ($) {
             }
         });
     };
+
+  
+       
+
+
+
+
 
     var onDocumentReady = function () {
         initUi();
