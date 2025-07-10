@@ -1,0 +1,60 @@
+﻿@model OurEstheticSolution.ViewModel.AppointmentViewModel
+
+@{
+    ViewData["Title"] = "Appointment Detail";
+}
+
+<h2 class="text-center my-4 text-primary">Appointment Details</h2>
+
+<div class="container">
+    <div class="row shadow-lg p-4 rounded bg-light">
+
+        <!-- Left Side: Appointment Summary / Image -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <img src="@Url.Content("~/images/appointment.jpg")" class="card-img-top rounded" alt="Appointment Image" style="height: 350px; object-fit: cover;" />
+                <div class="card-body">
+                    <h5 class="card-title text-dark">Title</h5>
+                    <p class="card-text text-muted">
+                        @Html.DisplayFor(model => model.Title)
+                    </p>
+                    <p class="card-text">
+                        <strong>Date:</strong> @Html.DisplayFor(model => model.AppointmentDate)<br />
+                        <strong>Time:</strong> @Html.DisplayFor(model => model.AppointmentTime)
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Detailed Info -->
+        <div class="col-md-6">
+            <div class="card p-3 border-0 bg-white">
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-4 text-secondary">Customer ID</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.CustomerId)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Employee ID</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.EmployeeId)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Service ID</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.ServiceId)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Created Date</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.CreatedDate)</dd>
+
+                        <dt class="col-sm-4 text-secondary">Created By</dt>
+                        <dd class="col-sm-8 text-dark">@Html.DisplayFor(model => model.CreatedBy)</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="text-center mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

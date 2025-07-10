@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+
+}
+
+    <div class="dashboard">
+        <div class="card">
+            <i class='bx bx-user'></i>
+            <h3>Clients</h3>
+            <p>325 Registered Clients</p>
+        </div>
+        <div class="card">
+            <i class='bx bx-calendar'></i>
+            <h3>Appointments</h3>
+            <p>48 Scheduled This Week</p>
+        </div>
+        <div class="card">
+            <i class='bx bx-dollar-circle'></i>
+            <h3>Revenue</h3>
+            <p>$12,450 This Month</p>
+        </div>
+        <div class="card">
+            <i class='bx bx-star'></i>
+            <h3>Reviews</h3>
+            <p>4.8 Average Rating</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="serviceChart"></canvas>
+    </div>
+
+

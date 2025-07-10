@@ -8,6 +8,7 @@ window.app.dashboard = (function ($) {
         GetEmployee();
         GetService();
         GetServiceList();
+        GetAppointmentList();
        
 
        
@@ -94,6 +95,37 @@ window.app.dashboard = (function ($) {
             },
             error: function () {
                 alert("Unable to retrieve service list.");
+            }
+        });
+    };
+
+    var GetAppointmentList = function () {
+        debugger;
+        $.ajax({
+            url: '/Appointment/AllAppointment',
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var rows = '';
+                var i = 1;
+                $.each(data, function (index, item) {
+                    rows += `
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm">
+                        <img src="/images/image/appointment.jpg" class="card-img-top" height="200px" width="100%" alt="Appointment Image">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.Title || 'No Title'}</h5>
+                            <p class="card-text">Date: ${item.AppointmentTime || 'N/A'}</p>
+                            <a href="/Appointment/AppointmentDetail/${item.id}">MakeAppointment</a>
+                        </div>
+                    </div>
+                </div>`;
+                    i++;
+                });
+                $('#cardAppointment').html(rows);
+            },
+            error: function () {
+                alert("Unable to retrieve appointment list.");
             }
         });
     };

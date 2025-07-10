@@ -1,187 +1,247 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>OurEstheticSolution | Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>OurEstheticSolution | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonts & Icons -->
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/stylesheet.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OurEstheticSolution.styles.css" asp-append-version="true" />
 
-<!-- Styles -->
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        box-sizing: border-box;
-    }
+    <!-- Fonts & Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
-    body {
-        background: #fff7f5;
-        color: #333;
-    }
-
-    .header {
-        background-color: #d4af37;
-        color: white;
-        padding: 20px;
-        text-align: center;
-        font-size: 28px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-
-    .dashboard {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 20px;
-        padding: 40px;
-    }
-
-    .card {
-        background-color: #fff;
-        padding: 25px;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        transition: transform 0.3s;
-    }
-
-        .card:hover {
-            transform: translateY(-5px);
+    <!-- Internal Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
         }
 
-        .card i {
-            font-size: 30px;
-            color: #d4af37;
-            margin-bottom: 10px;
+        body {
+            background: #fff7f5;
+            color: #333;
         }
 
-        .card h3 {
-            font-size: 22px;
-            margin: 10px 0 5px;
+        .header {
+            background-color: #d4af37;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
-        .card p {
-            font-size: 16px;
-            color: #777;
+        .sidebar {
+            width: 220px;
+            background-color: #1e1e1e;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
         }
 
-    .chart-container {
-        width: 90%;
-        margin: 0 auto 40px;
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+            .sidebar h5 {
+                font-size: 20px;
+                color: #d4af37;
+                margin-bottom: 25px;
+                font-weight: 600;
+                text-transform: uppercase;
+                text-align: center;
+            }
 
-    footer {
-        background-color: #222;
-        color: #ccc;
-        text-align: center;
-        padding: 15px;
-    }
+            .sidebar a {
+                color: #ccc;
+                text-decoration: none;
+                padding: 10px 15px;
+                border-radius: 6px;
+                font-size: 16px;
+                transition: background 0.3s, color 0.3s;
+            }
 
-        footer a {
-            color: #d4af37;
-            text-decoration: none;
-            margin: 0 8px;
-        }
-</style>
-<</head>
-    <body>
-
-
-        <div class="header">
-            OurEstheticSolution Dashboard
-        </div>
-
-        <div class="dashboard">
-            <div class="card">
-                <i class='bx bx-user'></i>
-                <h3>Clients</h3>
-                <p>325 Registered Clients</p>
-            </div>
-            <div class="card">
-                <i class='bx bx-calendar'></i>
-                <h3>Appointments</h3>
-                <p>48 Scheduled This Week</p>
-            </div>
-            <div class="card">
-                <i class='bx bx-dollar-circle'></i>
-                <h3>Revenue</h3>
-                <p>$12,450 This Month</p>
-            </div>
-            <div class="card">
-                <i class='bx bx-star'></i>
-                <h3>Reviews</h3>
-                <p>4.8 Average Rating</p>
-            </div>
-        </div>
-
-        <div class="chart-container">
-            <canvas id="serviceChart"></canvas>
-        </div>
-
-        <footer>
-            &copy; 2025 OurEstheticSolution | <a href="#">Facebook</a> <a href="#">Instagram</a> <a href="#">Contact</a>
-        </footer>
-
-        <!-- Scripts -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            const ctx = document.getElementById('serviceChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Facials', 'Botox', 'Laser', 'Massage', 'Hair Treatment'],
-                    datasets: [{
-                        label: 'Services Booked',
-                        data: [45, 25, 30, 50, 20],
-                        backgroundColor: '#d4af37'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false },
-                        title: {
-                            display: true,
-                            text: 'Popular Services This Month',
-                            color: '#333',
-                            font: { size: 18 }
-                        }
-                    }
+                .sidebar a:hover,
+                .sidebar a.active {
+                    background-color: #333;
+                    color: #fff;
                 }
-            });
-        </script>
-        <script src="~/js/dash.js"></script>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
 
+        .main-content {
+            margin-left: 220px;
+        }
 
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
 
-    </body>
-</html>
+        .card {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
 
-  @*   <!-- Sidebar Menu -->
-   
-    <!-- Main Content -->
-    <div class="content">
-        @RenderBody()
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+            .card i {
+                font-size: 30px;
+                color: #d4af37;
+                margin-bottom: 10px;
+            }
+
+            .card h3 {
+                font-size: 22px;
+                margin: 10px 0 5px;
+            }
+
+            .card p {
+                font-size: 16px;
+                color: #777;
+            }
+
+        .chart-container {
+            width: 90%;
+            margin: 0 auto 40px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 15px;
+        }
+
+            footer a {
+                color: #d4af37;
+                text-decoration: none;
+                margin: 0 8px;
+            }
+
+        .logout-link {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+        }
+
+            .logout-link a {
+                color: #ccc;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 16px;
+                transition: background 0.3s, color 0.3s;
+            }
+
+                .logout-link a:hover {
+                    background-color: #333;
+                    color: white;
+                    border-radius: 6px;
+                    padding: 10px 15px;
+                }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h5>
+            <a asp-controller="Dashboard" asp-action="Index" style="color: #d4af37; text-decoration: none;">
+                Dashboard
+            </a>
+        </h5>
+
+        <a asp-controller="Employee" asp-action="Index"><i class='bx bx-user-pin'></i> Employee</a>
+        <a asp-controller="Product" asp-action="Index"><i class='bx bx-package'></i> Product</a>
+        <a asp-controller="Service" asp-action="Index"><i class='bx bx-cog'></i> Service</a>
+        <a asp-controller="Appointment" asp-action="Index"><i class='bx bx-calendar'></i> Appointment</a>
+        <a asp-controller="Customer" asp-action="Index"><i class='bx bx-user'></i> Customer</a>
+        <!-- Push Logout to Bottom -->
+        <div class="logout-link">
+            <a href="#"><i class='bx bx-log-out'></i> Logout</a>
+           
+        </div>
+       
     </div>
+   
+
+    <!-- Razor Sections -->
+    <div class="content">
+        <div class="main-content">
+            <div class="header">OurEstheticSolution Dashboard</div>
+
+           
+        @RenderBody()
+
+    </div>
+    </div>
+    <footer>
+        &copy; 2025 OurEstheticSolution |
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Contact</a>
+       
+    </footer>
     <script src="~/js/dash.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+  
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('serviceChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Facials', 'Botox', 'Laser', 'Massage', 'Hair Treatment'],
+            datasets: [{
+              label: 'Services Booked',
+              data: [45, 25, 30, 50, 20],
+              backgroundColor: '#d4af37'
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: 'Popular Services This Month',
+                color: '#333',
+                font: { size: 18 }
+              }
+            }
+          }
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 
-    
    
+
+
 </body>
 </html>
- *@

@@ -19,6 +19,19 @@ namespace OurEstheticSolution.Controllers
             return View();
         }
         [HttpGet]
+        public ActionResult AppointmentDetail(Guid id)
+        {
+
+            var appointment= _appoRepo.GetById(id);
+            return View(appointment);
+
+
+
+        }
+
+
+
+        [HttpGet]
         public JsonResult AllAppointments()
         {
             var data = _appoRepo.GetAllAppointments();

@@ -3,76 +3,80 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-12">
+<div class="dashboard">
+    <div class="row">
+        <div class="col-md-12">
 
-        <div class="alert alert-success d-none" id="successMessage"></div>
-        <div class="alert alert-danger d-none" id="errorMessage"></div>
+            <div class="alert alert-success d-none" id="successMessage"></div>
+            <div class="alert alert-danger d-none" id="errorMessage"></div>
 
-        <form id="CreateEmpform">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input id="EmpId" name="id" class="form-control" type="text" />
-                        <label for="Name" class="control-label">Name</label>
-                        <input id="Name" name="name" class="form-control" />
-                        <span id="NameValidation" class="text-danger"></span>
+            <form id="CreateEmpform">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input id="EmpId" name="id" class="form-control" type="text" />
+                            <label for="Name" class="control-label">Name</label>
+                            <input id="Name" name="name" class="form-control" />
+                            <span id="NameValidation" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Address" class="control-label">Address</label>
+                            <input id="Address" name="address" class="form-control" />
+                            <span id="AddressValidation" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Email" class="control-label">Email</label>
+                            <input id="Email" name="email" class="form-control" />
+                            <span id="EmailValidation" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="Address" class="control-label">Address</label>
-                        <input id="Address" name="address" class="form-control" />
-                        <span id="AddressValidation" class="text-danger"></span>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="Designation" class="control-label">Designation</label>
+                            <input id="Designation" name="designation" class="form-control" />
+                            <span id="DesignationValidation" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 d-flex align-items-end">
+                        <div class="form-group">
+                            <input type="submit" value="Save" id="CreateEmployee" class="btn btn-primary" />
+                            <input type="submit" value="Update" id="UpdateEmployee" class="btn btn-primary" />
+                            <input type="reset" value="Reset" class="btn btn-dark" />
+                        </div>
                     </div>
                 </div>
+            </form>
+        </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="Email" class="control-label">Email</label>
-                        <input id="Email" name="email" class="form-control" />
-                        <span id="EmailValidation" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="Designation" class="control-label">Designation</label>
-                        <input id="Designation" name="designation" class="form-control" />
-                        <span id="DesignationValidation" class="text-danger"></span>
-                    </div>
-                </div>
-
-                <div class="col-md-4 d-flex align-items-end">
-                    <div class="form-group">
-                        <input type="submit" value="Save" id="CreateEmployee" class="btn btn-primary" />
-                        <input type="submit" value="Update" id="UpdateEmployee" class="btn btn-primary" />
-                        <input type="reset" value="Reset" class="btn btn-dark" />
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <div class="col-md-12 mt-5">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Address</th>
-                    <th>Email</th>
-                    <th>Designation</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="employeeTableBody"></tbody>
-        </table>
+        <div class="col-md-12 mt-5">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                        <th>Designation</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeTableBody"></tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+
 
 <<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-describedby="deleteModalDesc" aria-hidden="true">
     <div class="modal-dialog">
