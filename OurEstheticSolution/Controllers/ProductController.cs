@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OurEstheticSolution.Interface;
 using OurEstheticSolution.Models.Entities;
 using OurEstheticSolution.Repository;
@@ -17,6 +18,7 @@ namespace OurEstheticSolution.Controllers
             _prodRepo = prodRepo;
             _serviceRepo = serviceRepo;
         }
+        [Authorize]
         public IActionResult Index()
         {
             IEnumerable<ServiceViewModel> prodRepo = _serviceRepo.GetAllServices();

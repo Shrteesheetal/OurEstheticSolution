@@ -173,15 +173,19 @@
                 Dashboard
             </a>
         </h5>
-
+        
         <a asp-controller="Employee" asp-action="Index"><i class='bx bx-user-pin'></i> Employee</a>
         <a asp-controller="Product" asp-action="Index"><i class='bx bx-package'></i> Product</a>
         <a asp-controller="Service" asp-action="Index"><i class='bx bx-cog'></i> Service</a>
         <a asp-controller="Appointment" asp-action="Index"><i class='bx bx-calendar'></i> Appointment</a>
-        <a asp-controller="Customer" asp-action="Index"><i class='bx bx-user'></i> Customer</a>
+        <a asp-controller="Customer" asp-action="Index"><i class='bx bx-user'></i>Customer</a>
         <!-- Push Logout to Bottom -->
         <div class="logout-link">
-            <a href="#"><i class='bx bx-log-out'></i> Logout</a>
+            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn nav-link custom-nav-link"><i class='bx bx-log-out'></i>Logout</button>
+            </form>
+          
            
         </div>
        

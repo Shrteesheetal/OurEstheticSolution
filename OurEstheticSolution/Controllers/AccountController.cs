@@ -46,7 +46,7 @@ namespace OurEstheticSolution.Controllers
             var result = await signInManager.PasswordSignInAsync(user.UserName ?? string.Empty, model.Password, model.RememberMe, lockoutOnFailure: false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
 
             ModelState.AddModelError("", "Invalid login attempt.");

@@ -1,6 +1,8 @@
-﻿
+﻿body {
+    background-color: #154c79;
+}
 .account-container {
-    background-image: url('../images/image/flower.jpg');
+    background-image: url('../images/Frame.png');
     background-size: cover;
     background-position: center;
     background-repeat: repeat-y;
@@ -9,6 +11,7 @@
     align-items: center;
     min-height: 100vh;
     padding: 2rem 0;
+    color: #154c79;
 }
 
 .account-box {

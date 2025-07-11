@@ -8,7 +8,7 @@ window.app.dashboard = (function ($) {
         GetEmployee();
         GetService();
         GetServiceList();
-        GetAppointmentList();
+      //  GetAppointmentList();
        
 
        

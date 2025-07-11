@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "AppointmentDashBoard";
+    Layout = "~/Views/Shared/_AppointmentLayout.cshtml";
+
+}
+
+<div class="dashboard">
+    <div class="card">
+        <i class='bx bx-list-check'></i>
+        <h3>Total Appointments</h3>
+        <p>1025 Appointments Scheduled</p>
+    </div>
+    <div class="card">
+        <i class='bx bx-plus-circle'></i>
+        <h3>Make Appointment</h3>
+        <p>Create a new appointment</p>
+    </div>
+    <div class="card">
+        <i class='bx bx-detail'></i>
+        <h3>Appointment Details</h3>
+        <p>View and manage all bookings</p>
+    </div>
+    <div class="card">
+        <i class='bx bx-time'></i>
+        <h3>Today's Appointments</h3>
+        <p>18 Scheduled Today</p>
+    </div>
+</div>
+
+<div class="chart-container">
+    <canvas id="appointmentChart"></canvas>
+</div>
