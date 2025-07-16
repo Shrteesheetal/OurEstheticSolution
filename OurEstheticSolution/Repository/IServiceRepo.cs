@@ -46,7 +46,11 @@ namespace OurEstheticSolution.Repository
                     TotalCost = service.TotalCost,
                     Tools = service.Tools,
                     CreatedDate = service.CreatedDate,
-                    CreatedBy = service.CreatedBy
+                    CreatedBy = service.CreatedBy,
+                    Imagepath=service.Imagepath
+                    
+
+
                 })
                 .ToList();
         }
@@ -64,7 +68,9 @@ namespace OurEstheticSolution.Repository
                     TotalCost = s.TotalCost,
                     Tools = s.Tools,
                     CreatedDate = s.CreatedDate,
-                    CreatedBy = s.CreatedBy
+                    CreatedBy = s.CreatedBy,
+                    Imagepath=s.Imagepath
+
                 })
                 .FirstOrDefault();
 
@@ -89,7 +95,8 @@ namespace OurEstheticSolution.Repository
                 TotalCost = model.TotalCost,
                 Tools = model.Tools,
                 CreatedBy = model.CreatedBy,
-                CreatedDate = model.CreatedDate == default ? DateTime.UtcNow : model.CreatedDate
+                CreatedDate = DateTime.Now,
+                Imagepath=model.Imagepath
             };
 
             _context.Services.Add(serviceEntity); // Use Set<T>() to access the DbSet
@@ -110,7 +117,8 @@ namespace OurEstheticSolution.Repository
                 service.TotalCost = model.TotalCost;
                 service.Tools = model.Tools;
                 service.CreatedDate = model.CreatedDate;
-                service.CreatedBy = model.CreatedBy;
+                service.Imagepath = model.Imagepath;
+             
 
                 _context.SaveChanges(); // Commit changes
             }

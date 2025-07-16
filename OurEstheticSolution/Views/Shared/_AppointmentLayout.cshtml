@@ -5,6 +5,14 @@
     <title>OurEstheticSolution | Appointment Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/stylesheet.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OurEstheticSolution.styles.css" asp-append-version="true" />
+
+
     <!-- Fonts & Icons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -85,11 +93,12 @@
             padding: 15px;
         }
 
-            footer a {
-                color: #d4af37;
-                text-decoration: none;
-                margin: 0 8px;
-            }
+        .logout-link {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 2px solid #444;
+
+        }
     </style>
 </head>
 <body>
@@ -98,7 +107,7 @@
     <div class="content">
         <div class="main-content">
             <div class="header">
-                OurEstheticSolution | Appointment Dashboard
+                OurEstheticSolution | Appointment Dashboard<h3>Welcome, @ViewBag.Username!</h3>
             </div>
 
 
@@ -110,10 +119,18 @@
    
 
     <footer>
-        &copy; 2025 OurEstheticSolution |
-        <a href="#">Facebook</a>
-        <a href="#">Instagram</a>
-        <a href="#">Contact</a>
+        &copy; 2025 OurEstheticSolution 
+      
+
+        <div class="logout-link">
+            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn nav-link custom-nav-link" font-size="large"><i class='bx bx-log-out'></i>Logout</button>
+            </form>
+
+
+        </div>
+
     </footer>
     <script src="~/js/dash.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -121,34 +138,7 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx = document.getElementById('appointmentChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Facial', 'Botox', 'Laser', 'Massage', 'Hair'],
-                datasets: [{
-                    label: 'Appointments Booked',
-                    data: [50, 30, 20, 40, 25],
-                    backgroundColor: '#d4af37'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false },
-                    title: {
-                        display: true,
-                        text: 'Appointments by Service Type',
-                        color: '#333',
-                        font: { size: 18 }
-                    }
-                }
-            }
-        });
-    </script>
+   
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

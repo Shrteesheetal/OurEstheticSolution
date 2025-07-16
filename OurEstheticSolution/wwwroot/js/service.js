@@ -32,25 +32,47 @@ window.app.service = (function ($) {
 
     function getFormData() {
         debugger;
-        return {
-            Id: $('#ServiceId').val(),
-            Name: $('#Name').val(),
-            TimePeriod: $('#TimePeriod').val(),
-            TotalCost: $('#TotalCost').val(),
-            Tools: $('#Tools').val(),
-            Description: $('#Description').val(),
-            CreatedBy: $('#CreatedBy').val()
-        };
+
+        var formData = new FormData();
+
+        // Get the image file
+        var image = document.getElementById("imgup").files[0];
+        if (image) {
+            formData.append("PostImage", image); // Key name must match server parameter
+        }
+
+        // Append text fields
+        formData.append("Id", $('#ServiceId').val());
+        formData.append("Name", $('#Name').val());
+        formData.append("TimePeriod", $('#TimePeriod').val());
+        formData.append("TotalCost", $('#TotalCost').val());
+        formData.append("Tools", $('#Tools').val());
+        formData.append("Description", $('#Description').val());
+    
+        //formData.append("Imagepath", $('#Imagepath').val());
+
+        //// Append new file if selected
+        //var imageFile = $('#ImageFile')[0].files[0];
+        //if (imageFile) {
+        //    formData.append("ImageFile", imageFile); // key must match parameter in controller
+        //}
+
+
+        return formData;
     }
 
+ 
+
     var InsertService = function (e) {
-        debugger;
         e.preventDefault();
         var formData = getFormData();
+
         $.ajax({
             type: "POST",
             url: '/Service/Create',
             data: formData,
+            contentType: false,
+            processData: false,
             success: function (response) {
                 if (response.success) {
                     alert(response.message);
@@ -67,13 +89,16 @@ window.app.service = (function ($) {
     };
 
     var UpdateService = function (e) {
-        debugger;
         e.preventDefault();
+
         var formData = getFormData();
+
         $.ajax({
             type: "POST",
             url: '/Service/UpdateService',
             data: formData,
+            processData: false,        // Prevent jQuery from processing data
+            contentType: false,        // Prevent jQuery from setting content type
             success: function (response) {
                 if (response.success) {
                     alert(response.message);
@@ -89,6 +114,7 @@ window.app.service = (function ($) {
         });
     };
 
+
     var Reset = function () {
         debugger;
         $('#ServiceId').val('');
@@ -99,8 +125,23 @@ window.app.service = (function ($) {
         $('#Tools').val('');
         $('#Description').val('');
         $('#CreatedBy').val('');
+        $('#Imagepath').val('');
         $('#CreateService').show();
         $('#UpdateService').hide();
+        const button = document.querySelector('.remove-image'); // or pass button ref if available
+        if (button) {
+            removeUpload(button); // call your removeUpload function
+        }
+
+        $('#PreviewImage').attr('src', '');
+    };
+    var removeUpload = function (button) {
+        var $wrapper = $(button).closest('.file-upload');
+        var $input = $wrapper.find('.file-upload-input');
+
+        $input.replaceWith($input.clone()); // Clear input
+        $wrapper.find('.file-upload-content').hide();
+        $wrapper.find('.image-upload-wrap').show();
     };
 
     var GetServiceList = function () {
@@ -121,6 +162,7 @@ window.app.service = (function ($) {
                     rows += '<td>' + item.tools + '</td>';
                     rows += '<td>' + item.description + '</td>';
                     rows += '<td>' + item.createdBy + '</td>';
+                    rows += '<td><img src="' + item.imagepath + '" alt="Service Image" width="80" height="60"/></td>';
                     rows += '<td>';
                     rows += '<button class="btn btn-info editservice" data-id="' + item.id + '">Edit</button> ';
                     rows += '<button class="btn btn-danger deleteservice" data-id="' + item.id + '" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</button>';
@@ -163,15 +205,24 @@ window.app.service = (function ($) {
             method: 'GET',
             datatype: 'json',
             success: function (item) {
-               
+                debugger;
                 $('#ServiceId').val(item.id);
                 $('#DeleteServiceId').val(item.id);
                 $('#Name').val(item.name);
-                $('#TimePeriod').val(item.timeperiod);
-                $('#TotalCost').val(item.totalcost);
+                $('#TimePeriod').val(item.timePeriod);
+                $('#TotalCost').val(item.totalCost);
                 $('#Tools').val(item.tools);
                 $('#Description').val(item.description);
-                $('#CreatedBy').val(item.createdby);
+                $('#CreatedBy').val(item.createdBy);
+               
+                // Show existing image in preview
+                if (item.imagepath) {
+                    $('#PreviewImage').attr('src',  item.imagepath); // adjust path if needed
+                } else {
+                    $('#PreviewImage').attr('src', '');
+                }
+
+
                 $('#UpdateService').show();
                 $('#CreateService').hide();
             },

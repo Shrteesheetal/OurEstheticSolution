@@ -11,19 +11,19 @@ namespace OurEstheticSolution.ViewModel
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Product name is required.")]
-        public string Name { get; set; } = string.Empty;
+        public string ? Name { get; set; } = string.Empty;
 
-        public string Description { get; set; } = string.Empty;
+        public string ? Description { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Expiry date is required.")]
         [DataType(DataType.Date, ErrorMessage = "Invalid date format.")]
         public DateTime ExpiryDate { get; set; } = DateTime.UtcNow;
 
         [Required(ErrorMessage = "Manufacturer is required.")]
-        public string ManufacturedBy { get; set; } = string.Empty;
+        public string ? ManufacturedBy { get; set; } 
 
         [Required(ErrorMessage = "Service ID is required.")]
-        public string ServiceId { get; set; } = string.Empty;
+        public Guid ? ServiceId { get; set; } 
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

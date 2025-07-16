@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using OurEstheticSolution.Data;
 using OurEstheticSolution.Interface;
 using OurEstheticSolution.Models;
-using OurEstheticSolution.Models.Entities;
 using OurEstheticSolution.Repository;
 using OurEstheticSolution.Services;
 using System;
@@ -18,6 +17,13 @@ builder.Services.AddScoped<IEmployee, IEmployeeRepo>();
 builder.Services.AddScoped<IProduct, IProductRepo>();
 builder.Services.AddScoped<IService, IServiceRepo>();
 builder.Services.AddScoped<IAppointment, IAppointmentRepo>();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 
 builder.Services.AddDbContext<AppDBContext>(options =>
@@ -59,7 +65,7 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapStaticAssets();
 
 app.MapControllerRoute(

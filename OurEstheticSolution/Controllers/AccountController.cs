@@ -35,22 +35,43 @@ namespace OurEstheticSolution.Controllers
             {
                 return View(model);
             }
-
             var user = await userManager.FindByEmailAsync(model.Email);
             if (user == null)
             {
                 ModelState.AddModelError("", "Invalid login attempt.");
-                return View(model); // Ensure early return if user is null
+                return View(model);
             }
 
-            var result = await signInManager.PasswordSignInAsync(user.UserName ?? string.Empty, model.Password, model.RememberMe, lockoutOnFailure: false);
+            var result = await signInManager.PasswordSignInAsync(
+                user.UserName ?? string.Empty,
+                model.Password,
+                model.RememberMe,
+                lockoutOnFailure: false);
+
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Dashboard");
+                var roles = await userManager.GetRolesAsync(user);
+
+                HttpContext.Session.SetString("UserName", user.UserName!);
+                HttpContext.Session.SetString("UserId", user.Id);
+
+                if (roles.Contains("User"))
+                {
+                    return RedirectToAction("Index", "AppointmentDashboard");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Dashboard");
+                }
             }
 
             ModelState.AddModelError("", "Invalid login attempt.");
             return View(model);
+
+
+
+
+
         }
 
         public IActionResult Register()
@@ -179,6 +200,7 @@ namespace OurEstheticSolution.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+            HttpContext.Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 

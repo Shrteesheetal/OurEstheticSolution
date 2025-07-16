@@ -26,12 +26,17 @@ namespace OurEstheticSolution.Models.Entities
 
         [Required(ErrorMessage = "Service ID is required")]
         [StringLength(50, ErrorMessage = "Service ID cannot be longer than 50 characters")]
-        public string? ServiceId { get; set; }
+     
 
         [DataType(DataType.DateTime)]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [DataType(DataType.DateTime)]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
+
+        public Guid? ServiceId { get; set; }
+
+        [ForeignKey("ServiceId")]
+        public virtual Service? Service { get; set; }
     }
 }

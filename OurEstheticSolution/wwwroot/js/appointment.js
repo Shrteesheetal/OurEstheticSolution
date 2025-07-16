@@ -34,13 +34,12 @@ window.app.appointment = (function ($) {
         debugger;
         return {
             Id: $('#AppointmentId').val(),
-            Title: $('#Title').val(),
-            CustomerId: $('#CustomerId').val(),
             EmployeeId: $('#EmployeeId').val(),
             ServiceId: $('#ServiceId').val(),
             AppointmentDate: $('#AppointmentDate').val(),
             AppointmentTime: $('#AppointmentTime').val(),
-            CreatedBy: $('#CreatedBy').val()
+            Title: $('#Title').val(),
+    
         };
     }
 
@@ -93,13 +92,12 @@ window.app.appointment = (function ($) {
     var Reset = function () {
         $('#AppointmentId').val('');
         $('#DeleteAppointmentId').val('');
-        $('#Title').val('');
-        $('#CustomerId').val('');
         $('#EmployeeId').val('');
         $('#ServiceId').val('');
         $('#AppointmentDate').val('');
         $('#AppointmentTime').val('');
-        $('#CreatedBy').val('');
+        $('#Title').val('');
+
         $('#CreateAppointment').show();
         $('#UpdateAppointment').hide();
     };
@@ -116,13 +114,11 @@ window.app.appointment = (function ($) {
                 $.each(data, function (index, item) {
                     rows += '<tr>';
                     rows += '<td>' + i + '</td>';
-                    rows += '<td>' + item.title + '</td>';
-                    rows += '<td>' + item.customerId + '</td>';
                     rows += '<td>' + item.employeeId + '</td>';
                     rows += '<td>' + item.serviceId + '</td>';
                     rows += '<td>' + item.appointmentDate + '</td>';
                     rows += '<td>' + item.appointmentTime + '</td>';
-                    rows += '<td>' + item.createdBy + '</td>';
+                    rows += '<td>' + item.title + '</td>';
                     rows += '<td>';
                     rows += '<button class="btn btn-info editappointment" data-id="' + item.id + '">Edit</button> ';
                     rows += '<button class="btn btn-danger deleteappointment" data-id="' + item.id + '" data-bs-toggle="modal" data-bs-target="#DeleteModal">Delete</button>';
@@ -146,13 +142,11 @@ window.app.appointment = (function ($) {
             dataType: 'json',
             success: function (item) {
                 $('#AppointmentId').val(item.id);
-                $('#Title').val(item.title);
-                $('#CustomerId').val(item.customerId);
                 $('#EmployeeId').val(item.employeeId);
                 $('#ServiceId').val(item.serviceId);
                 $('#AppointmentDate').val(item.appointmentDate);
                 $('#AppointmentTime').val(item.appointmentTime);
-                $('#CreatedBy').val(item.createdBy);
+                $('#Title').val(item.title);
                 $('#UpdateAppointment').show();
                 $('#CreateAppointment').hide();
             },

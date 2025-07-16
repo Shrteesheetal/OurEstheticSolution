@@ -1,143 +1,265 @@
 ﻿@{
     ViewData["Title"] = "Service";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-  }
- 
+}
+<style>
+    .file-upload {
+        background-color: #f8f9fa;
+        width: 100%;
+        padding: 20px;
+        position: relative;
+        border: 2px dashed #ced4da;
+        border-radius: 10px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .file-upload:hover {
+            background-color: #f1f3f5;
+            border-color: #0d6efd;
+        }
+
+    .image-upload-wrap {
+        margin-top: 20px;
+        position: relative;
+    }
+
+        .image-upload-wrap:hover {
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .image-upload-wrap h3 {
+            font-size: 16px;
+            color: #6c757d;
+            font-weight: 400;
+            margin: 20px 0;
+        }
+
+    .file-upload-input {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        outline: none;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-upload-content {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .file-upload-image {
+        max-height: 300px;
+        width: auto;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 20px;
+        object-fit: cover;
+    }
+
+    .image-title-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .remove-image {
+        border: none;
+        background: #dc3545;
+        color: #fff;
+        padding: 10px 16px;
+        font-size: 14px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .remove-image:hover {
+            background-color: #bb2d3b;
+        }
+
+    .image-dropping {
+        border-color: #0d6efd;
+        background-color: #e9f5ff;
+    }
+
+</style>
 <div class="dashboard">
-<div class="row">
-    <div class="col-md-12">
-        <div class="alert alert-success d-none" id="successMessage"></div>
-        <div class="alert alert-danger d-none" id="errorMessage"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success d-none" id="successMessage"></div>
+            <div class="alert alert-danger d-none" id="errorMessage"></div>
 
-        <form id="CreateServiceForm">
-            <h2 class="mb-4">Service Registration Form</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <input id="ServiceId" name="id" type="hidden" />
+            <form id="CreateServiceForm">
+                <h2 class="mb-4">Service Registration Form</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input id="ServiceId" name="id" type="hidden" />
 
-                    <label for="Name" class="control-label">Service Name</label>
-                    <select id="Name" name="name" class="form-control" required>
-                        <option value="">-- Select Service --</option>
-                        <option value="Facial Treatment">Facial Treatment</option>
-                        <option value="Laser Hair Removal">Laser Hair Removal</option>
-                        <option value="Botox">Botox</option>
-                        <option value="Chemical Peel">Chemical Peel</option>
-                        <option value="Microdermabrasion">Microdermabrasion</option>
-                        <option value="Massage Therapy">Massage Therapy</option>
-                        <option value="Skin Rejuvenation">Skin Rejuvenation</option>
-                        <option value="Body Contouring">Body Contouring</option>
-                        <option value="Acne Treatment">Acne Treatment</option>
-                        <option value="Anti-Aging Treatment">Anti-Aging Treatment</option>
-                        <option value="Hair Restoration">Hair Restoration</option>
-                        <option value="Nail Care">Nail Care</option>
-                        <option value="Waxing">Waxing</option>
-                        <option value="Eyebrow Shaping">Eyebrow Shaping</option>
-                        <option value="Makeup Application">Makeup Application</option>
-                        <option value="Scar Revision">Scar Revision</option>
-                        <option value="Stretch Mark Treatment">Stretch Mark Treatment</option>
-                        <option value="Cellulite Treatment">Cellulite Treatment</option>
-                        <option value="Skin Tightening">Skin Tightening</option>
-                        <option value="Peel Treatment">Peel Treatment</option>
-                        <option value="LED Light Therapy">LED Light Therapy</option>
+                        <label for="Name" class="control-label">Service Name</label>
+                        <select id="Name" name="name" class="form-control" required>
+                            <option value="">-- Select Service --</option>
+                            <option value="Facial Treatment">Facial Treatment</option>
+                            <option value="Laser Hair Removal">Laser Hair Removal</option>
+                            <option value="Botox">Botox</option>
+                            <option value="Chemical Peel">Chemical Peel</option>
+                            <option value="Microdermabrasion">Microdermabrasion</option>
+                            <option value="Massage Therapy">Massage Therapy</option>
+                            <option value="Skin Rejuvenation">Skin Rejuvenation</option>
+                            <option value="Body Contouring">Body Contouring</option>
+                            <option value="Acne Treatment">Acne Treatment</option>
+                            <option value="Anti-Aging Treatment">Anti-Aging Treatment</option>
+                            <option value="Hair Restoration">Hair Restoration</option>
+                            <option value="Nail Care">Nail Care</option>
+                            <option value="Waxing">Waxing</option>
+                            <option value="Eyebrow Shaping">Eyebrow Shaping</option>
+                            <option value="Makeup Application">Makeup Application</option>
+                            <option value="Scar Revision">Scar Revision</option>
+                            <option value="Stretch Mark Treatment">Stretch Mark Treatment</option>
+                            <option value="Cellulite Treatment">Cellulite Treatment</option>
+                            <option value="Skin Tightening">Skin Tightening</option>
+                            <option value="Peel Treatment">Peel Treatment</option>
+                            <option value="LED Light Therapy">LED Light Therapy</option>
 
-                    </select>
-                    <span id="NameValidation" class="text-danger"></span>
+                        </select>
+                        <span id="NameValidation" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="TimePeriod" class="control-label">Time Period</label>
+                        <input type="text" id="TimePeriod" name="timePeriod" class="form-control" />
+                        <span id="TimePeriodValidation" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="TotalCost" class="control-label">Total Cost</label>
+                        <input type="text" id="TotalCost" name="totalCost" class="form-control" />
+                        <span id="TotalCostValidation" class="text-danger"></span>
+                    </div>
                 </div>
 
-                <div class="col-md-4">
-                    <label for="TimePeriod" class="control-label">Time Period</label>
-                    <input type="text" id="TimePeriod" name="timePeriod" class="form-control" />
-                    <span id="TimePeriodValidation" class="text-danger"></span>
-                </div>
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label for="Tools" class="control-label">Tools Used</label>
+                        <select id="Tools" name="tools" class="form-control">
+                            <option value="">-- Select Tool --</option>
+                            <option value="Facial Steamer">Facial Steamer</option>
+                            <option value="Magnifying Lamp">Magnifying Lamp</option>
+                            <option value="High Frequency Machine">High Frequency Machine</option>
+                            <option value="Galvanic Machine">Galvanic Machine</option>
+                            <option value="Ultrasonic Skin Scrubber">Ultrasonic Skin Scrubber</option>
+                            <option value="LED Light Therapy Device">LED Light Therapy Device</option>
+                            <option value="Microdermabrasion Machine">Microdermabrasion Machine</option>
+                            <option value="Massage Table">Massage Table</option>
+                            <option value="Hot Towel Cabinet">Hot Towel Cabinet</option>
+                            <option value="Aromatherapy Diffuser">Aromatherapy Diffuser</option>
+                            <option value="Massage Stones">Massage Stones</option>
+                            <option value="Body Massager">Body Massager</option>
+                            <option value="Nail Drill Machine">Nail Drill Machine</option>
+                            <option value="UV Nail Lamp">UV Nail Lamp</option>
+                            <option value="Cuticle Tools">Cuticle Tools</option>
+                            <option value="Nail Files & Buffers">Nail Files & Buffers</option>
+                            <option value="Foot Spa Basin">Foot Spa Basin</option>
+                            <option value="Hair Dryer">Hair Dryer</option>
+                            <option value="Flat Iron">Flat Iron</option>
+                            <option value="Hair Clippers">Hair Clippers</option>
+                            <option value="Color Mixing Kit">Color Mixing Kit</option>
+                            <option value="Hair Steamer">Hair Steamer</option>
+                            <option value="Wax Warmer">Wax Warmer</option>
+                            <option value="Wax Strips & Applicators">Wax Strips & Applicators</option>
+                            <option value="Threading Tools">Threading Tools</option>
+                            <option value="Epilator Machine">Epilator Machine</option>
+                            <option value="Laser Hair Removal Machine">Laser Hair Removal Machine</option>
+                            <option value="Radio Frequency Device">Radio Frequency Device</option>
+                            <option value="Body Cavitation Machine">Body Cavitation Machine</option>
+                            <option value="Cryotherapy Machine">Cryotherapy Machine</option>
+                            <option value="Hydrafacial Machine">Hydrafacial Machine</option>
+                        </select>
+                    </div>
 
-                <div class="col-md-4">
-                    <label for="TotalCost" class="control-label">Total Cost</label>
-                    <input type="text" id="TotalCost" name="totalCost" class="form-control" />
-                    <span id="TotalCostValidation" class="text-danger"></span>
-                </div>
-            </div>
+                    <div class="col-md-4">
+                        <label for="Description" class="control-label">Description</label>
+                        <textarea id="Description" name="description" class="form-control"></textarea>
+                    </div>
 
-            <div class="row mt-3">
-                <div class="col-md-4">
-                    <label for="Tools" class="control-label">Tools Used</label>
-                    <select id="Tools" name="tools" class="form-control">
-                        <option value="">-- Select Tool --</option>
-                        <option value="Facial Steamer">Facial Steamer</option>
-                        <option value="Magnifying Lamp">Magnifying Lamp</option>
-                        <option value="High Frequency Machine">High Frequency Machine</option>
-                        <option value="Galvanic Machine">Galvanic Machine</option>
-                        <option value="Ultrasonic Skin Scrubber">Ultrasonic Skin Scrubber</option>
-                        <option value="LED Light Therapy Device">LED Light Therapy Device</option>
-                        <option value="Microdermabrasion Machine">Microdermabrasion Machine</option>
-                        <option value="Massage Table">Massage Table</option>
-                        <option value="Hot Towel Cabinet">Hot Towel Cabinet</option>
-                        <option value="Aromatherapy Diffuser">Aromatherapy Diffuser</option>
-                        <option value="Massage Stones">Massage Stones</option>
-                        <option value="Body Massager">Body Massager</option>
-                        <option value="Nail Drill Machine">Nail Drill Machine</option>
-                        <option value="UV Nail Lamp">UV Nail Lamp</option>
-                        <option value="Cuticle Tools">Cuticle Tools</option>
-                        <option value="Nail Files & Buffers">Nail Files & Buffers</option>
-                        <option value="Foot Spa Basin">Foot Spa Basin</option>
-                        <option value="Hair Dryer">Hair Dryer</option>
-                        <option value="Flat Iron">Flat Iron</option>
-                        <option value="Hair Clippers">Hair Clippers</option>
-                        <option value="Color Mixing Kit">Color Mixing Kit</option>
-                        <option value="Hair Steamer">Hair Steamer</option>
-                        <option value="Wax Warmer">Wax Warmer</option>
-                        <option value="Wax Strips & Applicators">Wax Strips & Applicators</option>
-                        <option value="Threading Tools">Threading Tools</option>
-                        <option value="Epilator Machine">Epilator Machine</option>
-                        <option value="Laser Hair Removal Machine">Laser Hair Removal Machine</option>
-                        <option value="Radio Frequency Device">Radio Frequency Device</option>
-                        <option value="Body Cavitation Machine">Body Cavitation Machine</option>
-                        <option value="Cryotherapy Machine">Cryotherapy Machine</option>
-                        <option value="Hydrafacial Machine">Hydrafacial Machine</option>
-                    </select>
-                </div>
+                   @*  <div class="col-md-4">
+                        <label for="CreatedBy" class="control-label">Created By</label>
+                        <input id="CreatedBy" name="createdBy" class="form-control" />
+                        <span id="CreatedByValidation" class="text-danger"></span>
+                    </div> *@
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for=" ServiceImage" class="control-label">ServiceImage</label>
+                            <div class="file-upload">
+                                <div class="image-upload-wrap">
+                                    <input class="file-upload-input" id="imgup" type="file" accept="image/*" onchange="readURL(this);" />
+                                    <!-- Image preview -->
+                                    
+                                    <div class="drag-text">
+                                        <h3>Click or drag image to upload</h3>
+                                    </div>
+                                </div>
 
-                <div class="col-md-4">
-                    <label for="Description" class="control-label">Description</label>
-                    <textarea id="Description" name="description" class="form-control"></textarea>
-                </div>
+                                <div class="file-upload-content">
+                                    <img class="file-upload-image" src="#" alt="Preview Image" />
+                                    <div class="image-title-wrap">
+                                        <button type="button" onclick="removeUpload(this)" class="remove-image">
+                                            Remove <span class="image-title">Uploaded Image</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-md-4">
+                            <label for=" ServiceImage" class="control-label">Previous Image</label>
+                            <div class="file-upload">
+                                <div class="image-upload-wrap">
+                                   <img id="PreviewImage" src="" alt="Service Image" style="max-width: 200px; margin-top: 10px;" />
+                                   
+                                </div>
 
-                <div class="col-md-4">
-                    <label for="CreatedBy" class="control-label">Created By</label>
-                    <input id="CreatedBy" name="createdBy" class="form-control" />
-                    <span id="CreatedByValidation" class="text-danger"></span>
-                </div>
-            </div>
+                               
+                            </div>
+                            </div>
+                      
+                    </div>
 
-            <div class="row mt-3">
-                <div class="col-md-12 d-flex justify-content-start gap-2">
-                    <input type="submit" value="Save" id="CreateService" class="btn btn-primary" />
-                    <input type="submit" value="Update" id="UpdateService" class="btn btn-primary" />
-                    
+                    <div class="row mt-3">
+                        <div class="col-md-12 d-flex justify-content-start gap-2">
+                            <input type="submit" value="Save" id="CreateService" class="btn btn-primary" />
+                            <input type="submit" value="Update" id="UpdateService" class="btn btn-primary" />
 
-                    <input type="reset" value="Reset" class="btn btn-dark" />
-                </div>
-            </div>
-        </form>
+
+                            <input type="reset" value="Reset" class="btn btn-dark" />
+                        </div>
+                    </div>
+            </form>
+        </div>
+
+        <div class="col-md-12 mt-5">
+            <table class="table table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Time Period</th>
+                        <th>Total Cost</th>
+                        <th>Tools</th>
+                        <th>Description</th>
+                        <th>Created By</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="serviceTableBody"></tbody>
+            </table>
+        </div>
     </div>
-
-    <div class="col-md-12 mt-5">
-        <table class="table table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Time Period</th>
-                    <th>Total Cost</th>
-                    <th>Tools</th>
-                    <th>Description</th>
-                    <th>Created By</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="serviceTableBody"></tbody>
-        </table>
-    </div>
-</div>
 </div>
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -161,15 +283,53 @@
 
 
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
 
 @section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/service.js"></script>
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-
     <script>
-        $(document).ready(function () {
-            GetServiceList(); // Loads service table
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    var $wrapper = $(input).closest('.file-upload');
+                    $wrapper.find('.image-upload-wrap').hide();
+                    $wrapper.find('.file-upload-image').attr('src', e.target.result);
+                    $wrapper.find('.file-upload-content').show();
+                    $wrapper.find('.image-title').html(input.files[0].name);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                removeUpload(input);
+            }
+        }
+
+        function removeUpload(button) {
+            var $wrapper = $(button).closest('.file-upload');
+            var $input = $wrapper.find('.file-upload-input');
+
+            $input.replaceWith($input.clone()); // Clear input
+            $wrapper.find('.file-upload-content').hide();
+            $wrapper.find('.image-upload-wrap').show();
+        }
+
+        // Optional drag styles
+        $(document).on('dragover', '.image-upload-wrap', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).addClass('image-dropping');
+        });
+
+        $(document).on('dragleave dragend drop', '.image-upload-wrap', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $(this).removeClass('image-dropping');
         });
     </script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+
 }

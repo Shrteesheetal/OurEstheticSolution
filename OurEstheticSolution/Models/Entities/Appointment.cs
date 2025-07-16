@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OurEstheticSolution.Models.Entities
 {
@@ -8,18 +9,16 @@ namespace OurEstheticSolution.Models.Entities
         [Key]
         public Guid Id { get; set; }
 
-        [Required(ErrorMessage = "Title is required")]
-        [StringLength(100)]
-        public string? Title { get; set; }
+        public Guid? EmployeeId { get; set; }
 
-        [Required(ErrorMessage = "Customer is required")]
-        public string? CustomerId { get; set; }
+        [ForeignKey("EmployeeId")]
+        public virtual Employee? Employee { get; set; }
 
-        [Required(ErrorMessage = "Employee is required")]
-        public string? EmployeeId { get; set; }
+        public Guid? ServiceId { get; set; }
 
-        [Required(ErrorMessage = "Service is required")]
-        public string? ServiceId { get; set; }
+        [ForeignKey("ServiceId")]
+        public virtual Service? Service { get; set; }
+
 
         [Required(ErrorMessage = "Appointment time is required")]
         [DataType(DataType.Time)]
@@ -32,9 +31,10 @@ namespace OurEstheticSolution.Models.Entities
         [DataType(DataType.DateTime)]
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-        [Required(ErrorMessage = "Created by is required")]
-        [StringLength(100, ErrorMessage = "Created by cannot be longer than 100 characters")]
-       
-        public string Createdby { get; internal set; }
+        public string? CreatedBy { get; set; }  // from session
+        public string? Remarks { get; set; }
+
+
+
     }
 }

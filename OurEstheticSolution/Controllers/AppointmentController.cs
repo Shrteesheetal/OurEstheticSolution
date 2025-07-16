@@ -16,6 +16,7 @@ namespace OurEstheticSolution.Controllers
         }
         public IActionResult Index()
         {
+            
             return View();
         }
         [HttpGet]
@@ -41,11 +42,10 @@ namespace OurEstheticSolution.Controllers
        
         [HttpPost]
         public IActionResult Create(AppointmentViewModel model)
-        
-        
         {
             try
             {
+                model.CreatedBy= HttpContext?.Session.GetString("UserName");
                 _appoRepo.InsertAppointment(model);
                 return Json(new { success = true, message = "Appointment inserted successfully!" });
             }

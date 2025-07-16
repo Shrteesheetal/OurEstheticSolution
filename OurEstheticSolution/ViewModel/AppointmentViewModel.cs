@@ -12,13 +12,13 @@ namespace OurEstheticSolution.ViewModel
         public string? Title { get; set; }
 
         [Required(ErrorMessage = "Customer is required")]
-        public string? CustomerId { get; set; }
+        public Guid ? CustomerId { get; set; }
 
         [Required(ErrorMessage = "Employee is required")]
-        public string? EmployeeId { get; set; }
+        public Guid ? EmployeeId { get; set; }
 
         [Required(ErrorMessage = "Service is required")]
-        public string? ServiceId { get; set; }
+        public Guid ? ServiceId { get; set; }
 
         [Required(ErrorMessage = "Appointment time is required")]
         [DataType(DataType.Time)]

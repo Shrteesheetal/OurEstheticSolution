@@ -20,14 +20,14 @@ namespace OurEstheticSolution.Repository
                 .Select(appt => new AppointmentViewModel
                 {
                     Id = appt.Id,
-                    Title = appt.Title,
-                    CustomerId = appt.CustomerId,
+                    Title = appt.Remarks,
+                  
                     EmployeeId = appt.EmployeeId,
                     ServiceId = appt.ServiceId,
                     AppointmentTime = appt.AppointmentTime,
                     AppointmentDate = appt.AppointmentDate,
                     CreatedDate = appt.CreatedDate,
-                    CreatedBy = appt.Createdby
+                    CreatedBy = appt.CreatedBy
                
 
                 })
@@ -40,14 +40,14 @@ namespace OurEstheticSolution.Repository
                 .Select(appt => new AppointmentViewModel
                 {
                     Id = appt.Id,
-                    Title = appt.Title,
-                    CustomerId = appt.CustomerId,
+                    Title = appt.Remarks,
                     EmployeeId = appt.EmployeeId,
                     ServiceId = appt.ServiceId,
-                    AppointmentDate = appt.AppointmentDate,
                     AppointmentTime = appt.AppointmentTime,
+                    AppointmentDate = appt.AppointmentDate,
                     CreatedDate = appt.CreatedDate,
-                    CreatedBy = appt.Createdby
+                    CreatedBy = appt.CreatedBy
+
                 })
                 .SingleOrDefault(); // SingleOrDefault since ID is unique
 
@@ -66,14 +66,14 @@ namespace OurEstheticSolution.Repository
             var appointmentEntity = new Appointment
             {
                 Id = model.Id,
-                Title = model.Title,
-                CustomerId = model.CustomerId,
+                Remarks = model.Title,
+              
                 EmployeeId = model.EmployeeId,
                 ServiceId = model.ServiceId,
                 AppointmentDate = model.AppointmentDate,
                 AppointmentTime = model.AppointmentTime,
                 CreatedDate = model.CreatedDate == default ? DateTime.UtcNow : model.CreatedDate,
-                Createdby = model.CreatedBy ?? string.Empty, // Fix for CS8601: Provide a default value if null
+                CreatedBy = model.CreatedBy ?? string.Empty, // Fix for CS8601: Provide a default value if null
             };
 
             _context.Appointments.Add(appointmentEntity); // Add to DbSet
@@ -86,14 +86,13 @@ namespace OurEstheticSolution.Repository
             if (appointment != null)
             {
                 // Map fields from ViewModel to Entity
-                appointment.Title = model.Title;
-                appointment.CustomerId = model.CustomerId;
+                appointment.Remarks = model.Title;
                 appointment.EmployeeId = model.EmployeeId;
                 appointment.ServiceId = model.ServiceId;
                 appointment.AppointmentDate = model.AppointmentDate;
                 appointment.AppointmentTime = model.AppointmentTime;
                 appointment.CreatedDate = model.CreatedDate;
-                appointment.Createdby = model.CreatedBy ?? string.Empty; // Fix for CS8601: Provide a default value if null
+                appointment.CreatedBy = model.CreatedBy ?? string.Empty; // Fix for CS8601: Provide a default value if null
 
                 _context.SaveChanges(); // Commit changes
             }

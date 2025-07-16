@@ -33,7 +33,7 @@ namespace OurEstheticSolution.Services
                 {
                     var adminUser = new User
                     {
-                        FullName = "Code Hub",
+                        FullName = "Srijana Rai",
                         UserName = adminUserName,
                         Email = adminEmail,
                         DateOfBirth = new DateTime(1990, 1, 1),
@@ -42,7 +42,7 @@ namespace OurEstheticSolution.Services
                         EmailConfirmed = true,
                         createdAt = DateTime.UtcNow,
                         SecurityStamp = Guid.NewGuid().ToString(),
-                        Address = "123 Code Street, Tech City, 12345",
+                        Address = "Kathmandu",
                         Gender = "Female"
                     };
 

@@ -31,5 +31,7 @@ namespace OurEstheticSolution.ViewModel
         [Required(ErrorMessage = "Created by is required")]
         [StringLength(100, ErrorMessage = "Created by cannot be longer than 100 characters")]
         public string? CreatedBy { get; set; }
+
+        public string? Imagepath { get; set; }
     }
 }

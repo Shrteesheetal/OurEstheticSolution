@@ -79,7 +79,7 @@ window.app.dashboard = (function ($) {
                     rows += `
                     <div class="col-md-4 mb-4">
                         <div class="card shadow-sm">
-                            <img src="/images/image/img.jpg" class="card-img-top" height="200px" width="200px" alt="Service Image">
+                            <img src="${item.imagepath}" class="card-img-top" height="200px" width="200px" alt="Service Image">
                             <div class="card-body">
                                 <h5 class="card-title">${item.name  || 'No Title'}</h5>
                              
